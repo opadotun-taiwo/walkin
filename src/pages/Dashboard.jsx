@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {RxSketchLogo, RxDashboard, RxPerson} from 'react-icons/rx'
 import {FiSettings} from 'react-icons/fi'
 import {HiOutlineShoppingBag} from 'react-icons/hi'
 import Dealvoucher from '../components/Dealvoucher'
+import Footer from '../components/Footer';
+import AutoLocation from '../components/AutoLocation'
+import GroupBuy from '../components/Groupbuy'
+import Direction from '../components/Direction'
+
 
 const Dashboard = () => {
   return (
@@ -23,8 +28,8 @@ const Dashboard = () => {
             </Link>
         </div>
       </div>
-      <div className='pt-[100px] w-full h-screen'>
-          
+      <div className='relative w-full h-screen pt-[100px] sm:ml-[250px]'>
+          <Dealvoucher />
       </div>
     </div>
   )

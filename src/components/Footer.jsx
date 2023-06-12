@@ -7,7 +7,7 @@ const Footer = () => {
       <div className='relative p-4 flex flex-col justify-center items-center w-full h-[200px]'>
         <h1 className='text-center font-serif 2xl:text-[80px] xl:text-[40px] sm:text-[48px] text-[30px] xl:leading-[72px] md:leading-[56px] leading-[36px] xl:max-w-[550px] sm:max-w-[350px] max-w-[250px]'>Let's make a deal.</h1>
         <p className='py-2 text-center'>We can bring more people nearby to your business. <br />You get real insight into how your deals are performing all in one place.</p>
-        <button className='bg-[#89E101] my-2 py-2 px-8 rounded cursor-pointer text-black font-semibold'>Bring a deal</button>
+        <button className='bg-[#89E101] my-2 py-2 px-8 rounded cursor-pointer text-black font-semibold'><Link to='https://forms.gle/Hd9JAE7Bo3dN2frb8'>Bring a deal</Link></button>
 
       </div>
       <div className='md:flex md:justify-between p-4'>

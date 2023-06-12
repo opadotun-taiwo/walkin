@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { db } from '../firebase'
 import { collection, addDoc } from "firebase/firestore"; 
 import { Link, useNavigate } from 'react-router-dom'
+import Footer from '../components/Footer';
 
 const Profile = () => {
   const [name, setName] = useState('')
@@ -65,6 +66,7 @@ const Profile = () => {
                     <button type='submit' className='bg-[#89E101] py-3 my-6 rounded font-bold'>Get a 40% deal now</button>          
         </form>
       </div>
+      <Footer />
     </div>
   )
 }

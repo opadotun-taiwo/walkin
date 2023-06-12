@@ -12,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Profile from './pages/Profile'
 import AllDeals from './pages/AllDeals'
 import Singledeal from './pages/Singledeal'
+import Singledealproduct from './pages/Singledealproduct'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/signup' element={<Signup />}/>
         <Route path='/alldeals' element={<AllDeals />}/>
         <Route path='/viewmore' element={<Singledeal />}/>
+        <Route path='/viewmoreproduct' element={<Singledealproduct />}/>
         <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
         <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute> }/>
       </Routes>

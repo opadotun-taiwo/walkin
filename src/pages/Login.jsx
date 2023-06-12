@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { userAuth } from '../context/AuthContext'
+import { GoogleButton } from 'react-google-button'
 import Footer from '../components/Footer'
 
 
@@ -8,16 +9,27 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
-    const {user, logIn} = userAuth()
+    const {user, logIn, googleSignIn} = userAuth()
 
     //after signup
     const navigate = useNavigate()
+
+    const handleGoogleSignIn = async () => {
+      try{
+        await googleSignIn();
+        navigate('/dashboard');
+      }catch(error){
+        console.log(error)
+        const msg = 'try another google account'
+            setError(msg)
+      }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError('')
         try{
-            await logIn(email, password)
+            await logIn(email, password);
             navigate('/dashboard')
         }catch (error){
             console.log(error)
@@ -29,6 +41,8 @@ const Login = () => {
             // }, 2000);
         }
     }
+
+
 
   return (
     <>
@@ -49,10 +63,14 @@ const Login = () => {
                         <p>Need help?</p>
                     </div>
                 </form>
+                <div className='flex justify-center'>
+                    <GoogleButton onClick={handleGoogleSignIn}/>
+                </div>
             </div>
         
       </div>
     </div>
+    <Footer />
     </>
   )
 }

@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { userAuth } from '../context/AuthContext'
+import { GoogleButton } from 'react-google-button'
 import Footer from '../components/Footer'
 import { db } from '../firebase'
 import { collection, addDoc } from "firebase/firestore"; 
 
+
 const Signup = () => {
   const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {user, signUp} = userAuth()
+    const {user, signUp, googleSignIn} = userAuth()
+
     //after signup
     const navigate = useNavigate()
+
+    const handleGoogleSignIn = async () => {
+      try{
+        await googleSignIn();
+        await addDoc(collection(db, 'users'),{
+              Email: email
+            })
+      }catch(error){
+        console.log(error)
+      }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -19,12 +33,16 @@ const Signup = () => {
             await addDoc(collection(db, 'users'),{
               Email: email
             })
-            navigate('/Profile')
         }catch (error){
             console.log(error)
         }
     }
 
+    useEffect(() => {
+        if(user != null){
+            navigate('/Profile')
+        }
+    },[])
 
   return (
     <>
@@ -44,10 +62,14 @@ const Signup = () => {
                         <p>Need help?</p>
                     </div> 
                 </form>
+                <div className='flex justify-center'>
+                  <GoogleButton onClick={handleGoogleSignIn} />
+                </div>
             </div>
         
       </div>
     </div>
+    <Footer />
     </>
   )
 }
